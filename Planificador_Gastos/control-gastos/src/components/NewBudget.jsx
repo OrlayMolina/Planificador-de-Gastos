@@ -10,7 +10,7 @@ const NewBudget = ({ budget, setBudget, setIsValidBudget  }) => {
         e.preventDefault();
 
         if(!budget || budget < 0) {
-            setMessage('El presupuesto no es valido, debe ser un numero positivo');
+            setMessage('El presupuesto no es valido, debe ser un número positivo');
             return;
         }
 
