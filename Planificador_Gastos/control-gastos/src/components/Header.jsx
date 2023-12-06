@@ -1,6 +1,7 @@
 //import React from 'react'
 import PropTypes from 'prop-types';
 import NewBudget from './NewBudget'
+import ControlBudget from './ControlBudget'
 
 const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
   return (
@@ -8,7 +9,9 @@ const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
       <h1>Planificador de Gastos</h1>
 
       {isValidBudget ? (
-        <p>Control Presupuesto</p>
+        <ControlBudget
+            budget={budget} 
+        />
       ) : (
         <NewBudget 
             budget={budget}

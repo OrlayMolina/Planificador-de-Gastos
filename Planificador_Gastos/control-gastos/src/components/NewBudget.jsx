@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Message from './Message';
 
-const NewBudget = ({ budget, setBudget, isValidBudget, setIsValidBudget  }) => {
+const NewBudget = ({ budget, setBudget, setIsValidBudget  }) => {
 
     const [message, setMessage] = useState('');
 
@@ -27,7 +27,7 @@ const NewBudget = ({ budget, setBudget, isValidBudget, setIsValidBudget  }) => {
                 type="number"
                 className="nuevo-presupuesto"
                 placeholder="Añade tu presupuesto"
-                value={budget || 0 }
+                value={budget || 0  }
                 onChange={e => setBudget(Number(e.target.value))}
             />
         </div>
@@ -45,7 +45,6 @@ const NewBudget = ({ budget, setBudget, isValidBudget, setIsValidBudget  }) => {
 NewBudget.propTypes = {
     budget: PropTypes.number.isRequired,
     setBudget: PropTypes.func.isRequired,
-    isValidBudget: PropTypes.bool.isRequired,
     setIsValidBudget: PropTypes.func.isRequired,
   
   };
