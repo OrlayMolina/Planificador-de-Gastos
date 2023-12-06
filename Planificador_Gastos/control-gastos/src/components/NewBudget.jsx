@@ -2,16 +2,20 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Message from './Message';
 
-const NewBudget = ({ budget, setBudget }) => {
+const NewBudget = ({ budget, setBudget, isValidBudget, setIsValidBudget  }) => {
 
     const [message, setMessage] = useState('');
 
     const handleBudget = e => {
         e.preventDefault();
 
-        if(!Number(budget) || budget < 0) {
-            setMessage('El presupuesto debe ser un número');
+        if(!budget || budget < 0) {
+            setMessage('El presupuesto no es valido, debe ser un numero positivo');
+            return;
         }
+
+        setMessage('');
+        setIsValidBudget(true);
     }
 
   return (
@@ -20,11 +24,11 @@ const NewBudget = ({ budget, setBudget }) => {
         <div className="campo">
             <label htmlFor="">Definir Presupuesto</label>
             <input 
-                type="text"
+                type="number"
                 className="nuevo-presupuesto"
                 placeholder="Añade tu presupuesto"
-                value={budget}
-                onChange={e => setBudget(e.target.value)}
+                value={budget || 0 }
+                onChange={e => setBudget(Number(e.target.value))}
             />
         </div>
 
@@ -41,6 +45,8 @@ const NewBudget = ({ budget, setBudget }) => {
 NewBudget.propTypes = {
     budget: PropTypes.number.isRequired,
     setBudget: PropTypes.func.isRequired,
+    isValidBudget: PropTypes.bool.isRequired,
+    setIsValidBudget: PropTypes.func.isRequired,
   
   };
 

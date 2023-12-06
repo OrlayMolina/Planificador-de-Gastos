@@ -10,7 +10,7 @@ const Message = ({ children, type }) => {
 }
 
 Message.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
     type: PropTypes.string.isRequired,
 }; 
 
