@@ -15,7 +15,7 @@ const Header = ({ budget, setBudget }) => {
 }
 
 Header.propTypes = {
-    budget: PropTypes.int.isRequired,
+    budget: PropTypes.number.isRequired,
     setBudget: PropTypes.func.isRequired,
   
   };
