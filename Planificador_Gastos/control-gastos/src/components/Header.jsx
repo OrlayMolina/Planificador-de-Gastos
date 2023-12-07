@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import NewBudget from './NewBudget'
 import ControlBudget from './ControlBudget'
 
-const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
+const Header = ({ expenses, budget, setBudget, isValidBudget, setIsValidBudget }) => {
   return (
     <header>
       <h1>Planificador de Gastos</h1>
 
       {isValidBudget ? (
         <ControlBudget
+            expenses={expenses}
             budget={budget} 
         />
       ) : (
@@ -26,6 +27,7 @@ const Header = ({ budget, setBudget, isValidBudget, setIsValidBudget }) => {
 }
 
 Header.propTypes = {
+    expenses: PropTypes.array.isRequired,
     budget: PropTypes.number.isRequired,
     setBudget: PropTypes.func.isRequired,
     isValidBudget: PropTypes.bool.isRequired,
