@@ -3,7 +3,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css';
 import PropTypes from 'prop-types';
 
-const ControlBudget = ({ expenses, setExpenses, budget, setBudget, isValidBudget }) => {
+const ControlBudget = ({ expenses, setExpenses, budget, setBudget, setIsValidBudget }) => {
 
     const [percentage , setPercentage] = useState(0);
     const [available , setAvailable] = useState(0);
@@ -33,14 +33,15 @@ const ControlBudget = ({ expenses, setExpenses, budget, setBudget, isValidBudget
     }
 
     const handleResetApp = () => {
-      const result = confirm('¿Estás seguro de resetear la app?');
-
-      if(result){
+      const result = window.confirm('¿Estás seguro de resetear la app?');
+    
+      if (result) {
         setExpenses([]);
         setBudget(0);
-        isValidBudget(false);
+        setIsValidBudget(false); // Cambia isValidBudget(false) a setIsValidBudget(false)
       }
     }
+    
 
   return (
     <div className="contenedor-presupuesto contenedor sombra dos-columnas">
@@ -85,7 +86,7 @@ ControlBudget.propTypes = {
     setExpenses: PropTypes.func.isRequired,
     budget: PropTypes.number.isRequired,
     setBudget: PropTypes.func.isRequired,
-    isValidBudget: PropTypes.bool.isRequired,
+    setIsValidBudget: PropTypes.bool.isRequired,
   
   };
 
