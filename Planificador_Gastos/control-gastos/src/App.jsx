@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Modal from './components/Modal';
+import ExpensesList from './components/ExpensesList';
 import { generateId } from './helpers';
 import IconNewBudget from './img/nuevo-gasto.svg';
 
@@ -41,14 +42,21 @@ function App() {
       />
 
       {isValidBudget ? (
-        <div className='nuevo-gasto'>
-          <img 
-            src={IconNewBudget} 
-            alt="Icono Nuevo Gasto"
-            onClick={handleNewBudget}
-          />
-        
-        </div>
+        <>
+          <main>
+            <ExpensesList 
+              expenses={expenses}
+            />
+          </main>
+          <div className='nuevo-gasto'>
+            <img 
+              src={IconNewBudget} 
+              alt="Icono Nuevo Gasto"
+              onClick={handleNewBudget}
+            />
+          
+          </div>
+        </>
       ) : null }
 
       {modal && <Modal 
