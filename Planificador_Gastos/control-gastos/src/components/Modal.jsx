@@ -1,15 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Message from './Message';
 import CloseBtn from '../img/cerrar.svg';
 
-const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
+const Modal = ({setModal, animateModal, setAnimateModal, saveExpense, expenseEdit}) => {
 
     const [message, setMessage] = useState('');
 
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
     const [category, setCategory] = useState('');
+    const [date, setDate] = useState('');
+    const [id, setId] = useState('');
+
+    useEffect(() => {
+        if(Object.keys(expenseEdit).length > 0) {
+            setName(expenseEdit.name);
+            setAmount(expenseEdit.amount);
+            setCategory(expenseEdit.category);
+            setId(expenseEdit.id);
+            setDate(expenseEdit.date);
+        }
+    }, [expenseEdit]);
 
     const hideModal = () => {
         setAnimateModal(false);
@@ -31,7 +43,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
             return; 
         }
 
-        saveExpense({ name, amount, category });
+        saveExpense({ name, amount, category, id, date });
     }
 
     return (
@@ -48,7 +60,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
         className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}
         onSubmit={handleSubmit}
       >
-        <legend>Nuevo Gasto</legend>
+        <legend>{expenseEdit.name ? 'Editar Gasto' : 'Nuevo Gasto' }</legend>
         {message && <Message type='error'>{message}</Message>}
 
         <div className='campo'>
@@ -64,7 +76,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
         </div>
 
         <div className='campo'>
-            <label htmlFor="nombre">Cantidad</label>
+            <label htmlFor="nombre">Monto del Gasto</label>
 
             <input 
                 id='nombre'
@@ -77,7 +89,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
 
 
         <div className='campo'>
-            <label htmlFor="categoria">Nombre Gasto</label>
+            <label htmlFor="categoria">Categoria</label>
 
             <select 
                 id="categoria"
@@ -99,7 +111,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
 
         <input 
             type="submit" 
-            value="Añadir Gasto"
+            value={expenseEdit.name ? 'Guardar Cambios' : 'Añadir Gasto' }
         />
 
       </form>
@@ -112,6 +124,7 @@ Modal.propTypes = {
     animateModal: PropTypes.bool.isRequired,
     setAnimateModal: PropTypes.func.isRequired,
     saveExpense: PropTypes.func.isRequired,
+    expenseEdit: PropTypes.object.isRequired
 };
 
 export default Modal
