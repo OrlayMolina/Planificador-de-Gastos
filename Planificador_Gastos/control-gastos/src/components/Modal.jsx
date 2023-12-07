@@ -9,7 +9,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
 
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
-    const [categoty, setCategory] = useState('');
+    const [category, setCategory] = useState('');
 
     const hideModal = () => {
         setAnimateModal(false);
@@ -22,7 +22,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if([name, amount, categoty].includes('')) {
+        if([name, amount, category].includes('')) {
             setMessage('Todos los campos son obligatorios');
 
             setTimeout(() => {
@@ -31,7 +31,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
             return; 
         }
 
-        saveExpense({ name, amount, categoty });
+        saveExpense({ name, amount, category });
     }
 
     return (
@@ -81,7 +81,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
 
             <select 
                 id="categoria"
-                value={categoty}
+                value={category}
                 onChange={ e => setCategory(e.target.value)}
             >
                 <option value="">-- Seleccione --</option>
