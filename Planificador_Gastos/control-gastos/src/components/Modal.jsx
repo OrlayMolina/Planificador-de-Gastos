@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Message from './Message';
 import CloseBtn from '../img/cerrar.svg';
 
-const Modal = ({setModal, animateModal, setAnimateModal, saveExpense, expenseEdit}) => {
+const Modal = ({setModal, animateModal, setAnimateModal, saveExpense, expenseEdit, setExpenseEdit}) => {
 
     const [message, setMessage] = useState('');
 
@@ -25,6 +25,7 @@ const Modal = ({setModal, animateModal, setAnimateModal, saveExpense, expenseEdi
 
     const hideModal = () => {
         setAnimateModal(false);
+        setExpenseEdit({}); 
 
         setTimeout(() => {
             setModal(false);
@@ -124,7 +125,8 @@ Modal.propTypes = {
     animateModal: PropTypes.bool.isRequired,
     setAnimateModal: PropTypes.func.isRequired,
     saveExpense: PropTypes.func.isRequired,
-    expenseEdit: PropTypes.object.isRequired
+    expenseEdit: PropTypes.object.isRequired,
+    setExpenseEdit: PropTypes.func.isRequired,
 };
 
 export default Modal

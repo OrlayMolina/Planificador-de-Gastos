@@ -25,9 +25,9 @@ const dictionary = {
     suscripciones: iconSubs,
 }
 
-const Expense = ({ expense, setExpenseEdit }) => {
+const Expense = ({ expense, setExpenseEdit, deleteExpense }) => {
 
-    const { category, amount, name, date } = expense;
+    const { category, amount, name, date, id } = expense;
 
     const leadingActions = () => (
         <LeadingActions >
@@ -39,7 +39,10 @@ const Expense = ({ expense, setExpenseEdit }) => {
 
     const trailingActions = () => (
         <TrailingActions >
-            <SwipeAction onClick={() => console.log('Borrar...')}>
+            <SwipeAction 
+              onClick={() => deleteExpense(id)}
+              destructive={true}
+            >
                 Eliminar
             </SwipeAction>
         </TrailingActions>
@@ -79,6 +82,7 @@ const Expense = ({ expense, setExpenseEdit }) => {
 Expense.propTypes = {
     expense: PropTypes.object.isRequired,
     setExpenseEdit: PropTypes.func.isRequired,  
+    deleteExpense: PropTypes.func.isRequired,
 };
 
 export default Expense
