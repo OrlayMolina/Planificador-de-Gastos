@@ -20,7 +20,7 @@ const ControlBudget = ({ expenses, setExpenses, budget, setBudget, setIsValidBud
         setSpent(totalSpent);
         setTimeout(() => {
             setPercentage(newPercentage);
-        }, 1000);
+        }, 800);
 
     }, [expenses, budget]);
 
@@ -86,7 +86,7 @@ ControlBudget.propTypes = {
     setExpenses: PropTypes.func.isRequired,
     budget: PropTypes.number.isRequired,
     setBudget: PropTypes.func.isRequired,
-    setIsValidBudget: PropTypes.bool.isRequired,
+    setIsValidBudget: PropTypes.func.isRequired,
   
   };
 
