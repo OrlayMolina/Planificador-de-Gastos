@@ -40,7 +40,7 @@ Proyecto de React utiliza normalize.css y ofrece un planificador de gastos para 
 <br>
 <b> Gastos agregados al Planificador de Gastos</b>
 
-![pagina inicial4](https://github.com/OrlayMolina/Planificador-de-Gastos/assets/111409267/0b5cab1b-2fa6-4959-9cff-1866f834a8fd)
+![pagina inicial5](https://github.com/OrlayMolina/Planificador-de-Gastos/assets/111409267/b2f92914-6c39-42f4-891e-46b8ee3a423a)
 
 
 <br>
@@ -58,9 +58,8 @@ Proyecto de React utiliza normalize.css y ofrece un planificador de gastos para 
 
 <b>Proyecto terminado</b>
 
-<a href="https://orlay-andres-molina-proyecto7.netlify.app/" target="_blank">
+<a href="https://orlay-andres-molina-proyecto8.netlify.app/" target="_blank">
 
-![react](https://github.com/OrlayMolina/Planificador-de-Gastos/assets/111409267/c8125290-53d3-4b77-8425-f3543fb9fb95)
-
+![react](https://github.com/OrlayMolina/Planificador-de-Gastos/assets/111409267/7f31600c-1c64-4823-90b7-35d667505826)
 
 </a>
