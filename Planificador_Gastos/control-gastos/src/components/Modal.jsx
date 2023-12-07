@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Message from './Message';
 import CloseBtn from '../img/cerrar.svg';
 
-const Modal = ({setModal, animateModal, setAnimateModal}) => {
+const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
+
+    const [message, setMessage] = useState('');
+
+    const [name, setName] = useState('');
+    const [amount, setAmount] = useState('');
+    const [categoty, setCategory] = useState('');
 
     const hideModal = () => {
         setAnimateModal(false);
@@ -11,7 +19,22 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
         }, 500);
     }
 
-  return (
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if([name, amount, categoty].includes('')) {
+            setMessage('Todos los campos son obligatorios');
+
+            setTimeout(() => {
+                setMessage('');
+            }, 2000);
+            return; 
+        }
+
+        saveExpense({ name, amount, categoty });
+    }
+
+    return (
     <div className="modal">
       <div className="cerrar-modal">
         <img 
@@ -21,8 +44,12 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
         />
       </div>
 
-      <form className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}>
+      <form 
+        className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}
+        onSubmit={handleSubmit}
+      >
         <legend>Nuevo Gasto</legend>
+        {message && <Message type='error'>{message}</Message>}
 
         <div className='campo'>
             <label htmlFor="nombre">Nombre Gasto</label>
@@ -31,6 +58,8 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
                 id='nombre'
                 type="text" 
                 placeholder='Añade el Nombre del Gasto'
+                value={name}
+                onChange={ e => setName(e.target.value)}
             />
         </div>
 
@@ -39,8 +68,10 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
 
             <input 
                 id='nombre'
-                type="text" 
+                type="number" 
                 placeholder='Añade el Nombre del Gasto'
+                value={amount}
+                onChange={ e => setAmount(Number(e.target.value))}
             />
         </div>
 
@@ -50,6 +81,8 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
 
             <select 
                 id="categoria"
+                value={categoty}
+                onChange={ e => setCategory(e.target.value)}
             >
                 <option value="">-- Seleccione --</option>
                 <option value="ahorro">Ahorro</option>
@@ -78,6 +111,7 @@ Modal.propTypes = {
     setModal: PropTypes.func.isRequired,
     animateModal: PropTypes.bool.isRequired,
     setAnimateModal: PropTypes.func.isRequired,
+    saveExpense: PropTypes.func.isRequired,
 };
 
 export default Modal
